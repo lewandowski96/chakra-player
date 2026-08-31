@@ -580,9 +580,232 @@
       color: var(--accent);
     }
 
+    /* Screenshots Gallery / Slideshow */
+    .gallery-section {
+      padding: 5rem 0 6rem;
+      position: relative;
+    }
+
+    .gallery-container {
+      position: relative;
+      margin: 0 auto;
+      max-width: 1040px;
+    }
+
+    .gallery-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .gallery-tab-btn {
+      padding: 0.65rem 1.15rem;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: inherit;
+      color: var(--text-muted);
+      background: var(--surface-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      outline: none;
+    }
+
+    .gallery-tab-btn:hover {
+      color: var(--text-main);
+      border-color: rgba(255, 255, 255, 0.2);
+      background: var(--surface-hover);
+      transform: translateY(-2px);
+    }
+
+    .gallery-tab-btn.active {
+      color: #09090b;
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 4px 18px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    .slideshow-wrapper {
+      position: relative;
+      border-radius: 20px;
+      padding: 10px;
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.25) 0%, rgba(255, 255, 255, 0.04) 100%);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), 0 0 50px rgba(245, 158, 11, 0.12);
+      outline: none;
+    }
+
+    .slideshow-viewport {
+      position: relative;
+      background: #09090b;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+
+    .slide-item {
+      display: none;
+      animation: fadeInSlide 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    .slide-item.active {
+      display: block;
+    }
+
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: scale(0.99); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .slide-media-wrapper {
+      width: 100%;
+      background: #09090b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-height: 560px;
+      overflow: hidden;
+    }
+
+    .slide-img {
+      width: 100%;
+      height: auto;
+      max-height: 560px;
+      object-fit: contain;
+      display: block;
+      background-color: #0d0d11;
+    }
+
+    .slide-caption-card {
+      padding: 1.5rem 2rem;
+      background: rgba(18, 18, 22, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .slide-info {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .slide-badge {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .slide-title {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+
+    .slide-quote {
+      font-size: 0.98rem;
+      color: #fbbf24;
+      font-style: italic;
+      margin-bottom: 0.35rem;
+      line-height: 1.45;
+    }
+
+    .slide-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Slideshow Navigation Controls */
+    .slide-nav-btn {
+      position: absolute;
+      top: 40%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(24, 24, 27, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 10;
+      font-size: 1.5rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+      user-select: none;
+    }
+
+    .slide-nav-btn:hover {
+      background: var(--accent);
+      color: #09090b;
+      border-color: var(--accent);
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 8px 24px var(--accent-glow);
+    }
+
+    .slide-prev {
+      left: 1.5rem;
+    }
+
+    .slide-next {
+      right: 1.5rem;
+    }
+
+    .slideshow-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slide-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      padding: 0;
+    }
+
+    .slide-dot:hover {
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .slide-dot.active {
+      width: 24px;
+      border-radius: 6px;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .hero { padding: 3.5rem 0 2rem; }
+      .slide-prev { left: 0.75rem; }
+      .slide-next { right: 0.75rem; }
+      .slide-caption-card { padding: 1.25rem; }
     }
   </style>
 </head>
@@ -598,6 +821,7 @@
 
       <nav class="nav-links">
         <a href="#features">Features</a>
+        <a href="#gallery">Screenshots</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
         <a href="https://github.com/lewandowski96/chakra" target="_blank" rel="noopener">GitHub</a>
@@ -726,6 +950,109 @@
     </div>
   </section>
 
+  <!-- App Screenshots Gallery / Slideshow Section -->
+  <section id="gallery" class="gallery-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Designed for Your Desktop Setup</h2>
+        <p style="color: var(--text-muted);">Explore Chakra's focused interfaces — from minimalist floating desktop widget to complete keyboard navigation.</p>
+      </div>
+
+      <div class="gallery-container">
+        <!-- Tab Selectors -->
+        <div class="gallery-tabs" role="tablist">
+          <button class="gallery-tab-btn active" data-slide="0" role="tab" aria-selected="true">
+            <span>🖥️</span> Desktop Setup
+          </button>
+          <button class="gallery-tab-btn" data-slide="1" role="tab" aria-selected="false">
+            <span>📚</span> Music Library
+          </button>
+          <button class="gallery-tab-btn" data-slide="2" role="tab" aria-selected="false">
+            <span>⚙️</span> Settings & Folders
+          </button>
+          <button class="gallery-tab-btn" data-slide="3" role="tab" aria-selected="false">
+            <span>⌨️</span> Shortcuts Reference
+          </button>
+        </div>
+
+        <!-- Slideshow Wrapper Frame -->
+        <div class="slideshow-wrapper" id="app-slideshow" tabindex="0" aria-label="App Screenshots Slideshow">
+          <button class="slide-nav-btn slide-prev" id="slide-prev-btn" aria-label="Previous Screenshot" title="Previous (←)">
+            ‹
+          </button>
+          <button class="slide-nav-btn slide-next" id="slide-next-btn" aria-label="Next Screenshot" title="Next (→)">
+            ›
+          </button>
+
+          <div class="slideshow-viewport">
+            <!-- Slide 1: Workspace Setup -->
+            <div class="slide-item active" data-index="0">
+              <div class="slide-media-wrapper">
+                <img src="full screen view.png" alt="Chakra neatly tucked in corner of full screen desktop workspace" class="slide-img" loading="eager">
+              </div>
+              <div class="slide-caption-card">
+                <div class="slide-info">
+                  <span class="slide-badge">Workspace Setup</span>
+                  <h3 class="slide-title">Minimalist Desktop Aesthetics</h3>
+                  <p class="slide-quote">“Neatly tucked in a corner of your screen for the aesthetics.”</p>
+                  <p class="slide-desc">Chakra floats effortlessly alongside your code editor, browser, and terminal without crowding your workspace.</p>
+                </div>
+                <div class="slideshow-dots" data-dots-for="0"></div>
+              </div>
+            </div>
+
+            <!-- Slide 2: Library View -->
+            <div class="slide-item" data-index="1">
+              <div class="slide-media-wrapper">
+                <img src="library view.png" alt="Chakra Music Library Grid View" class="slide-img" loading="lazy">
+              </div>
+              <div class="slide-caption-card">
+                <div class="slide-info">
+                  <span class="slide-badge">Music Library</span>
+                  <h3 class="slide-title">Instant Lossless Track Browser</h3>
+                  <p class="slide-quote">“Lightning-fast album browser with vivid artwork and instant search.”</p>
+                  <p class="slide-desc">Explore thousands of local lossless tracks with instantaneous indexing and smooth hardware-accelerated grid navigation.</p>
+                </div>
+                <div class="slideshow-dots" data-dots-for="1"></div>
+              </div>
+            </div>
+
+            <!-- Slide 3: Settings Page -->
+            <div class="slide-item" data-index="2">
+              <div class="slide-media-wrapper">
+                <img src="settings view.png" alt="Chakra Settings and Library Folder Management" class="slide-img" loading="lazy">
+              </div>
+              <div class="slide-caption-card">
+                <div class="slide-info">
+                  <span class="slide-badge">Settings & Directories</span>
+                  <h3 class="slide-title">Smart Music Folder Monitoring</h3>
+                  <p class="slide-quote">“Effortless music folder monitoring, resyncing, and audio preferences.”</p>
+                  <p class="slide-desc">Point Chakra to your local music folders, resync library changes with a single click, and customize playback behavior.</p>
+                </div>
+                <div class="slideshow-dots" data-dots-for="2"></div>
+              </div>
+            </div>
+
+            <!-- Slide 4: Shortcuts Page -->
+            <div class="slide-item" data-index="3">
+              <div class="slide-media-wrapper">
+                <img src="shortcuts view.png" alt="Chakra Keyboard Shortcuts Reference Menu" class="slide-img" loading="lazy">
+              </div>
+              <div class="slide-caption-card">
+                <div class="slide-info">
+                  <span class="slide-badge">Keyboard Shortcuts</span>
+                  <h3 class="slide-title">100% Keyboard-Driven Workflow</h3>
+                  <p class="slide-quote">“Control playback, search, tracks, and playlists without lifting your hands.”</p>
+                  <p class="slide-desc">Press <kbd style="background: rgba(255,255,255,0.12); border: 1px solid var(--glass-border); padding: 1px 6px; border-radius: 4px; color: var(--accent); font-weight: 700;">k</kbd> anytime inside Chakra to view the quick reference guide for effortless hotkey controls.</p>
+                </div>
+                <div class="slideshow-dots" data-dots-for="3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Pricing Section -->
   <section id="pricing" class="pricing-section">
@@ -916,6 +1243,144 @@
       }
 
       updateReleasesAndDownloads();
+
+      // Interactive Screenshots Slideshow Controller
+      (function initSlideshow() {
+        const slideshow = document.getElementById('app-slideshow');
+        if (!slideshow) return;
+
+        const slides = slideshow.querySelectorAll('.slide-item');
+        const tabBtns = document.querySelectorAll('.gallery-tab-btn');
+        const prevBtn = document.getElementById('slide-prev-btn');
+        const nextBtn = document.getElementById('slide-next-btn');
+        const dotsContainers = slideshow.querySelectorAll('.slideshow-dots');
+
+        let currentIndex = 0;
+        let autoplayTimer = null;
+        const totalSlides = slides.length;
+
+        // Generate pagination dots for each slide caption card
+        dotsContainers.forEach((container) => {
+          container.innerHTML = '';
+          for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.className = `slide-dot ${i === currentIndex ? 'active' : ''}`;
+            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+            dot.addEventListener('click', (e) => {
+              e.stopPropagation();
+              goToSlide(i);
+              resetAutoplay();
+            });
+            container.appendChild(dot);
+          }
+        });
+
+        function updateDots() {
+          dotsContainers.forEach((container) => {
+            const dots = container.querySelectorAll('.slide-dot');
+            dots.forEach((dot, idx) => {
+              dot.classList.toggle('active', idx === currentIndex);
+            });
+          });
+        }
+
+        function goToSlide(index) {
+          currentIndex = (index + totalSlides) % totalSlides;
+
+          slides.forEach((slide, idx) => {
+            slide.classList.toggle('active', idx === currentIndex);
+          });
+
+          tabBtns.forEach((btn, idx) => {
+            const isActive = idx === currentIndex;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
+
+          updateDots();
+        }
+
+        function nextSlide() {
+          goToSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+          goToSlide(currentIndex - 1);
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextSlide();
+            resetAutoplay();
+          });
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevSlide();
+            resetAutoplay();
+          });
+        }
+
+        tabBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const targetIdx = parseInt(btn.getAttribute('data-slide') || '0', 10);
+            goToSlide(targetIdx);
+            resetAutoplay();
+          });
+        });
+
+        // Keyboard arrow navigation on slideshow focus
+        slideshow.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            nextSlide();
+            resetAutoplay();
+          } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            prevSlide();
+            resetAutoplay();
+          }
+        });
+
+        // Mobile touch swipe gestures
+        let touchStartX = 0;
+        slideshow.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        slideshow.addEventListener('touchend', (e) => {
+          const touchEndX = e.changedTouches[0].screenX;
+          const diff = touchEndX - touchStartX;
+          if (Math.abs(diff) > 40) {
+            if (diff < 0) nextSlide();
+            else prevSlide();
+            resetAutoplay();
+          }
+        }, { passive: true });
+
+        // Autoplay rotation every 5.5 seconds (paused on hover)
+        function startAutoplay() {
+          stopAutoplay();
+          autoplayTimer = setInterval(nextSlide, 5500);
+        }
+
+        function stopAutoplay() {
+          if (autoplayTimer) clearInterval(autoplayTimer);
+        }
+
+        function resetAutoplay() {
+          stopAutoplay();
+          startAutoplay();
+        }
+
+        slideshow.addEventListener('mouseenter', stopAutoplay);
+        slideshow.addEventListener('mouseleave', startAutoplay);
+
+        startAutoplay();
+      })();
     })();
   </script>
 </body>
