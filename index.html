@@ -244,7 +244,8 @@
 
     /* Player Preview Showcase */
     .app-preview-container {
-      margin: 2rem auto 5rem;
+      margin: 2.5rem auto 4.5rem;
+      max-width: 860px;
       position: relative;
       border-radius: 20px;
       padding: 10px;
@@ -257,7 +258,6 @@
       border-radius: 14px;
       overflow: hidden;
       border: 1px solid var(--glass-border);
-      aspect-ratio: 16 / 10;
       display: flex;
       flex-direction: column;
       position: relative;
@@ -265,12 +265,13 @@
 
     .mockup-header {
       height: 38px;
-      background: rgba(24, 24, 27, 0.8);
+      background: rgba(24, 24, 27, 0.85);
       border-bottom: 1px solid var(--glass-border);
       display: flex;
       align-items: center;
       padding: 0 1rem;
       gap: 6px;
+      z-index: 2;
     }
 
     .mockup-dot {
@@ -279,14 +280,22 @@
       border-radius: 50%;
     }
 
-    .mockup-body {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      background: radial-gradient(circle at center, rgba(245, 158, 11, 0.15) 0%, transparent 65%);
+    .mockup-video-wrapper {
       position: relative;
+      width: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .player-preview-video {
+      width: 100%;
+      max-height: 680px;
+      display: block;
+      background: #000;
+      outline: none;
     }
 
     .now-playing-card {
@@ -595,35 +604,28 @@
         7-Day Unlimited Free Trial included • macOS & Windows 10/11 • Instant Activation
       </div>
 
-      <!-- App Preview Graphic -->
+      <!-- App Preview Video Showcase -->
       <div class="app-preview-container">
         <div class="app-mockup">
           <div class="mockup-header">
             <div class="mockup-dot" style="background: #ef4444;"></div>
             <div class="mockup-dot" style="background: #f59e0b;"></div>
             <div class="mockup-dot" style="background: #10b981;"></div>
-            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-left: 0.5rem;">Chakra — Now Playing</span>
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-left: 0.5rem;">Chakra — Lossless Audio Engine Demo</span>
           </div>
-          <div class="mockup-body">
-            <div class="now-playing-card">
-              <div class="mockup-art">
-                <div class="aura-glow"></div>
-                <span>💿</span>
-              </div>
-              <div>
-                <h3 style="font-size: 1.25rem; font-weight: 700;">Lossless Master Quality</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">24-bit / 192 kHz FLAC Direct Stream</p>
-              </div>
-              <div class="waveform-bars">
-                <div class="wave-bar"></div>
-                <div class="wave-bar"></div>
-                <div class="wave-bar"></div>
-                <div class="wave-bar"></div>
-                <div class="wave-bar"></div>
-                <div class="wave-bar"></div>
-                <div class="wave-bar"></div>
-              </div>
-            </div>
+          <div class="mockup-video-wrapper">
+            <video
+              id="chakra-preview-video"
+              class="player-preview-video"
+              controls
+              playsinline
+              preload="metadata"
+              poster="poster.jpg"
+            >
+              <source src="demo.mp4" type="video/mp4; codecs=avc1.4d4028,mp4a.40.2">
+              <source src="0831.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>
