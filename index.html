@@ -191,6 +191,15 @@
       position: relative;
     }
 
+    .hero-badges-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -202,8 +211,39 @@
       color: var(--accent);
       font-size: 0.82rem;
       font-weight: 600;
-      margin-bottom: 1.5rem;
       letter-spacing: 0.02em;
+    }
+
+    .hero-badge-downloads {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: #34d399;
+    }
+
+    .pulse-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      display: inline-block;
+      animation: livePulse 2s infinite;
+    }
+
+    @keyframes livePulse {
+      0% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .download-meta-highlight {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .download-meta-highlight strong {
+      color: var(--accent);
+      font-weight: 700;
     }
 
     .hero-title {
@@ -572,8 +612,14 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <div class="hero-badge">
-        <span>⚡ Pure Native Lossless Audio Engine</span>
+      <div class="hero-badges-wrapper">
+        <div class="hero-badge">
+          <span>⚡ Pure Native Lossless Audio Engine</span>
+        </div>
+        <div class="hero-badge hero-badge-downloads">
+          <span class="pulse-indicator"></span>
+          <span id="download-count-badge">20+ Downloads</span>
+        </div>
       </div>
 
       <h1 class="hero-title">
@@ -601,7 +647,7 @@
       </div>
 
       <div class="hero-meta">
-        7-Day Unlimited Free Trial included • macOS & Windows 10/11 • Instant Activation
+        7-Day Unlimited Free Trial included • macOS & Windows 10/11 • <span class="download-meta-highlight"><strong id="download-count-meta">20+</strong> Downloads</span>
       </div>
 
       <!-- App Preview Video Showcase -->
@@ -776,37 +822,74 @@
         macBtn.classList.add('btn-secondary');
       }
 
-      // Dynamically fetch direct download URLs from the latest GitHub release
-      async function updateDirectDownloadLinks() {
+      // Format download count into tiered bucket: 20+, 30+, 100+, 1000+, etc.
+      function formatDownloadTier(realCount) {
+        const base = 20; // Starting baseline
+        const total = base + (Number.isFinite(realCount) ? realCount : 0);
+
+        if (total < 100) {
+          // 10s steps: 20+, 30+, 40+, ... 90+
+          return `${Math.floor(total / 10) * 10}+`;
+        } else if (total < 1000) {
+          // 100s steps: 100+, 200+, ... 900+
+          return `${Math.floor(total / 100) * 100}+`;
+        } else if (total < 1000000) {
+          // 1000s steps: 1,000+, 10,000+, ...
+          const thousands = Math.floor(total / 1000) * 1000;
+          return `${thousands.toLocaleString()}+`;
+        } else {
+          return `${(total / 1000000).toFixed(1)}M+`;
+        }
+      }
+
+      function updateDownloadCounterUI(tierString) {
+        const badgeEl = document.getElementById('download-count-badge');
+        const metaEl = document.getElementById('download-count-meta');
+
+        if (badgeEl) badgeEl.textContent = `${tierString} Downloads`;
+        if (metaEl) metaEl.textContent = tierString;
+      }
+
+      // Dynamically fetch total downloads & direct URLs from GitHub releases
+      async function updateReleasesAndDownloads() {
         const repoCandidates = [
           'lewandowski96/heqwyhkasfahd',
           'lewandowski96/chakra'
         ];
 
+        let totalDownloads = 0;
+        let foundDownloads = false;
+
         for (const repo of repoCandidates) {
           try {
-            const res = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
+            const res = await fetch(`https://api.github.com/repos/${repo}/releases`);
             if (!res.ok) continue;
 
-            const release = await res.json();
-            if (!release || !Array.isArray(release.assets) || release.assets.length === 0) continue;
+            const releases = await res.json();
+            if (!Array.isArray(releases) || releases.length === 0) continue;
 
             let macAssetUrl = null;
             let winAssetUrl = null;
 
-            for (const asset of release.assets) {
-              const name = asset.name.toLowerCase();
-              const url = asset.browser_download_url;
+            for (const release of releases) {
+              if (Array.isArray(release.assets)) {
+                for (const asset of release.assets) {
+                  const count = asset.download_count || 0;
+                  totalDownloads += count;
+                  foundDownloads = true;
 
-              // macOS DMG installer (excluding signatures)
-              if (name.endsWith('.dmg') && !name.endsWith('.sig')) {
-                macAssetUrl = url;
-              }
+                  const name = (asset.name || '').toLowerCase();
+                  const url = asset.browser_download_url;
 
-              // Windows installer (prefer setup .exe, then .exe, then .msi)
-              if ((name.endsWith('-setup.exe') || name.endsWith('.exe') || name.endsWith('.msi')) && !name.endsWith('.sig')) {
-                if (!winAssetUrl || name.endsWith('-setup.exe')) {
-                  winAssetUrl = url;
+                  // macOS DMG installer
+                  if (!macAssetUrl && name.endsWith('.dmg') && !name.endsWith('.sig')) {
+                    macAssetUrl = url;
+                  }
+
+                  // Windows installer
+                  if (!winAssetUrl && (name.endsWith('-setup.exe') || name.endsWith('.exe') || name.endsWith('.msi')) && !name.endsWith('.sig')) {
+                    winAssetUrl = url;
+                  }
                 }
               }
             }
@@ -821,14 +904,18 @@
               winBtn.setAttribute('download', '');
             }
 
-            break; // Success
+            if (foundDownloads) {
+              const formatted = formatDownloadTier(totalDownloads);
+              updateDownloadCounterUI(formatted);
+              break;
+            }
           } catch (err) {
-            console.warn('Unable to dynamically fetch GitHub release assets:', err);
+            console.warn('Unable to dynamically fetch GitHub release data:', err);
           }
         }
       }
 
-      updateDirectDownloadLinks();
+      updateReleasesAndDownloads();
     })();
   </script>
 </body>
