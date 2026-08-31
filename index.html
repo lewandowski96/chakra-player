@@ -820,11 +820,11 @@
       </a>
 
       <nav class="nav-links">
-        <a href="#features">Features</a>
         <a href="#gallery">Screenshots</a>
+        <a href="#demo">Live Demo</a>
+        <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
-        <a href="https://github.com/lewandowski96/chakra" target="_blank" rel="noopener">GitHub</a>
       </nav>
 
       <a href="https://sanjeewa1996.gumroad.com/l/chakra" target="_blank" rel="noopener" class="btn btn-primary">
@@ -874,91 +874,13 @@
         7-Day Unlimited Free Trial included • macOS & Windows 10/11 • <span class="download-meta-highlight"><strong id="download-count-meta">20+</strong> Downloads</span>
       </div>
 
-      <!-- App Preview Video Showcase -->
-      <div class="app-preview-container">
-        <div class="app-mockup">
-          <div class="mockup-header">
-            <div class="mockup-dot" style="background: #ef4444;"></div>
-            <div class="mockup-dot" style="background: #f59e0b;"></div>
-            <div class="mockup-dot" style="background: #10b981;"></div>
-            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-left: 0.5rem;">Chakra — Lossless Audio Engine Demo</span>
-          </div>
-          <div class="mockup-video-wrapper">
-            <video
-              id="chakra-preview-video"
-              class="player-preview-video"
-              controls
-              playsinline
-              preload="metadata"
-              poster="poster.jpg"
-            >
-              <source src="demo.mp4" type="video/mp4; codecs=avc1.4d4028,mp4a.40.2">
-              <source src="0831.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features Section -->
-  <section id="features" class="features-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Built for Music Purists</h2>
-        <p style="color: var(--text-muted);">Engineered from the ground up for listeners who care about uncolored sound and snappy desktop software.</p>
-      </div>
-
-      <div class="grid-3">
-        <div class="glass feature-card">
-          <div class="feature-icon">🎧</div>
-          <h3>Bit-Perfect Playback</h3>
-          <p>Audio frames bypass OS sound mixers, software DSP filters, and resampling artifacts directly to your USB DAC or headphones.</p>
+      <!-- App Screenshots Gallery / Slideshow Section -->
+      <div id="gallery" class="gallery-container" style="margin-top: 3.5rem; margin-bottom: 4rem;">
+        <div class="section-header" style="margin-bottom: 2rem;">
+          <h2 class="section-title">Designed for Your Desktop Setup</h2>
+          <p style="color: var(--text-muted);">Explore Chakra's focused interfaces — from minimalist floating desktop widget to complete keyboard navigation.</p>
         </div>
 
-        <div class="glass feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>Pure Rust Audio Engine</h3>
-          <p>Ultra-low memory footprint (&lt;40MB) and near-zero CPU usage. Launches instantly without heavy Electron bloat.</p>
-        </div>
-
-        <div class="glass feature-card">
-          <div class="feature-icon">✨</div>
-          <h3>Real-time Visualizers</h3>
-          <p>Choose between dynamic ambient Energy Aura, smooth fluid Waveforms, and high-precision frequency equalizer bars.</p>
-        </div>
-
-        <div class="glass feature-card">
-          <div class="feature-icon">⌨️</div>
-          <h3>Keyboard-Centric Navigation</h3>
-          <p>Intuitive keyboard shortcuts for rapid library searching, queue rearrangement, and track switching without lifting your hands.</p>
-        </div>
-
-        <div class="glass feature-card">
-          <div class="feature-icon">📂</div>
-          <h3>Instant Multi-Folder Library</h3>
-          <p>Seamlessly indexes FLAC, WAV, ALAC, AIFF, MP3, and AAC audio tracks with high-res album artwork extraction.</p>
-        </div>
-
-        <div class="glass feature-card">
-          <div class="feature-icon">🔒</div>
-          <h3>100% Offline & Private</h3>
-          <p>No telemetry, no tracking, and no cloud dependencies. Your local music library stays private on your local storage.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- App Screenshots Gallery / Slideshow Section -->
-  <section id="gallery" class="gallery-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Designed for Your Desktop Setup</h2>
-        <p style="color: var(--text-muted);">Explore Chakra's focused interfaces — from minimalist floating desktop widget to complete keyboard navigation.</p>
-      </div>
-
-      <div class="gallery-container">
         <!-- Tab Selectors -->
         <div class="gallery-tabs" role="tablist">
           <button class="gallery-tab-btn active" data-slide="0" role="tab" aria-selected="true">
@@ -1049,6 +971,80 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- App Preview Video Showcase -->
+      <div id="demo" class="app-preview-container">
+        <div class="app-mockup">
+          <div class="mockup-header">
+            <div class="mockup-dot" style="background: #ef4444;"></div>
+            <div class="mockup-dot" style="background: #f59e0b;"></div>
+            <div class="mockup-dot" style="background: #10b981;"></div>
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-left: 0.5rem;">Chakra — Lossless Audio Engine Demo</span>
+          </div>
+          <div class="mockup-video-wrapper">
+            <video
+              id="chakra-preview-video"
+              class="player-preview-video"
+              controls
+              playsinline
+              preload="metadata"
+              poster="poster.jpg"
+            >
+              <source src="demo.mp4" type="video/mp4; codecs=avc1.4d4028,mp4a.40.2">
+              <source src="0831.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Built for Music Purists</h2>
+        <p style="color: var(--text-muted);">Engineered from the ground up for listeners who care about uncolored sound and snappy desktop software.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="glass feature-card">
+          <div class="feature-icon">🎧</div>
+          <h3>Bit-Perfect Playback</h3>
+          <p>Audio frames bypass OS sound mixers, software DSP filters, and resampling artifacts directly to your USB DAC or headphones.</p>
+        </div>
+
+        <div class="glass feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Pure Rust Audio Engine</h3>
+          <p>Ultra-low memory footprint (&lt;40MB) and near-zero CPU usage. Launches instantly without heavy Electron bloat.</p>
+        </div>
+
+        <div class="glass feature-card">
+          <div class="feature-icon">✨</div>
+          <h3>Real-time Visualizers</h3>
+          <p>Choose between dynamic ambient Energy Aura, smooth fluid Waveforms, and high-precision frequency equalizer bars.</p>
+        </div>
+
+        <div class="glass feature-card">
+          <div class="feature-icon">⌨️</div>
+          <h3>Keyboard-Centric Navigation</h3>
+          <p>Intuitive keyboard shortcuts for rapid library searching, queue rearrangement, and track switching without lifting your hands.</p>
+        </div>
+
+        <div class="glass feature-card">
+          <div class="feature-icon">📂</div>
+          <h3>Instant Multi-Folder Library</h3>
+          <p>Seamlessly indexes FLAC, WAV, ALAC, AIFF, MP3, and AAC audio tracks with high-res album artwork extraction.</p>
+        </div>
+
+        <div class="glass feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>100% Offline & Private</h3>
+          <p>No telemetry, no tracking, and no cloud dependencies. Your local music library stays private on your local storage.</p>
         </div>
       </div>
     </div>
