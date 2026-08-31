@@ -186,7 +186,7 @@
 
     /* Hero Section */
     .hero {
-      padding: 5rem 0 3.5rem;
+      padding: 5rem 0;
       text-align: center;
       position: relative;
     }
@@ -283,8 +283,13 @@
     }
 
     /* Player Preview Showcase */
+    .demo-section {
+      padding: 5rem 0;
+      position: relative;
+    }
+
     .app-preview-container {
-      margin: 2.5rem auto 4.5rem;
+      margin: 0 auto;
       max-width: 860px;
       position: relative;
       border-radius: 20px;
@@ -582,7 +587,7 @@
 
     /* Screenshots Gallery / Slideshow */
     .gallery-section {
-      padding: 5rem 0 6rem;
+      padding: 5rem 0;
       position: relative;
     }
 
@@ -873,14 +878,18 @@
       <div class="hero-meta">
         7-Day Unlimited Free Trial included • macOS & Windows 10/11 • <span class="download-meta-highlight"><strong id="download-count-meta">20+</strong> Downloads</span>
       </div>
+    </div>
+  </section>
 
-      <!-- App Screenshots Gallery / Slideshow Section -->
-      <div id="gallery" class="gallery-container" style="margin-top: 3.5rem; margin-bottom: 4rem;">
-        <div class="section-header" style="margin-bottom: 2rem;">
-          <h2 class="section-title">Designed for Your Desktop Setup</h2>
-          <p style="color: var(--text-muted);">Explore Chakra's focused interfaces — from minimalist floating desktop widget to complete keyboard navigation.</p>
-        </div>
+  <!-- App Screenshots Gallery / Slideshow Section -->
+  <section id="gallery" class="gallery-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Designed for Your Desktop Setup</h2>
+        <p style="color: var(--text-muted);">Explore Chakra's focused interfaces — from minimalist floating desktop widget to complete keyboard navigation.</p>
+      </div>
 
+      <div class="gallery-container">
         <!-- Tab Selectors -->
         <div class="gallery-tabs" role="tablist">
           <button class="gallery-tab-btn active" data-slide="0" role="tab" aria-selected="true">
@@ -973,9 +982,18 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- App Preview Video Showcase -->
-      <div id="demo" class="app-preview-container">
+  <!-- Live Demo Video Showcase Section -->
+  <section id="demo" class="demo-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">See Chakra in Action</h2>
+        <p style="color: var(--text-muted);">Watch bit-perfect lossless playback and real-time visualizers running live on desktop.</p>
+      </div>
+
+      <div class="app-preview-container">
         <div class="app-mockup">
           <div class="mockup-header">
             <div class="mockup-dot" style="background: #ef4444;"></div>
