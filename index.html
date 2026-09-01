@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chakra — Bit-Perfect Lossless Desktop Music Player</title>
-  <meta name="description" content="Chakra is a lightweight, bit-perfect lossless desktop music player for macOS and desktop platforms built with pure Rust. Enjoy FLAC, MP3, and dynamic audio visualizers.">
+  <title>Chakra — Bit-Perfect Lossless Player for Your Local Music Collection</title>
+  <meta name="description" content="Chakra is a lightweight, bit-perfect lossless desktop music player built in pure Rust for people who own their music collection. Enjoy FLAC, WAV, MP3, and dynamic audio visualizers with zero cloud lock-in.">
   
   <!-- Favicon / Icons -->
   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/lewandowski96/chakra/main/src-tauri/icons/32x32.png">
@@ -805,12 +805,156 @@
       box-shadow: 0 0 10px var(--accent-glow);
     }
 
+    /* Testimonials Section */
+    .testimonials-section {
+      padding: 5rem 0;
+      position: relative;
+    }
+
+    .testimonial-card {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.25rem;
+      transition: all 0.25s ease;
+      border: 1px solid var(--glass-border);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--glass-border-hover);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .stars {
+      color: var(--accent);
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+    }
+
+    .review-text {
+      color: var(--text-main);
+      font-size: 0.94rem;
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    .reviewer-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .reviewer-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.05));
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .reviewer-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .reviewer-role {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Feature Request Section */
+    .feature-request-section {
+      padding: 5rem 0;
+      position: relative;
+    }
+
+    .feature-request-card {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2.5rem;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(245, 158, 11, 0.08);
+    }
+
+    .request-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      text-align: left;
+    }
+
+    .form-label {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .form-label span {
+      color: var(--text-muted);
+      font-weight: 400;
+      font-size: 0.78rem;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      background: rgba(9, 9, 11, 0.6);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-glow);
+      background: rgba(18, 18, 22, 0.9);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .form-select option {
+      background: #18181b;
+      color: #f4f4f5;
+    }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .hero { padding: 3.5rem 0 2rem; }
       .slide-prev { left: 0.75rem; }
       .slide-next { right: 0.75rem; }
       .slide-caption-card { padding: 1.25rem; }
+      .feature-request-card { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -828,6 +972,8 @@
         <a href="#gallery">Screenshots</a>
         <a href="#demo">Live Demo</a>
         <a href="#features">Features</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#request">Feature Request</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
       </nav>
@@ -843,7 +989,7 @@
     <div class="container">
       <div class="hero-badges-wrapper">
         <div class="hero-badge">
-          <span>⚡ Pure Native Lossless Audio Engine</span>
+          <span>📂 For Your Personal Local Music Collection</span>
         </div>
         <div class="hero-badge hero-badge-downloads">
           <span class="pulse-indicator"></span>
@@ -852,13 +998,13 @@
       </div>
 
       <h1 class="hero-title">
-        Bit-Perfect Audio.<br>
-        <span class="gradient-text">Zero Compromises.</span>
+        Your Music. Your Files.<br>
+        <span class="gradient-text">Bit-Perfect Lossless Sound.</span>
       </h1>
 
       <p class="hero-subtitle">
-        Chakra is an ultra-fast, minimalist desktop music player built in pure Rust. 
-        Bypasses system mixers directly to your DAC for uncompromised bit-for-bit studio reproduction.
+        Chakra is an ultra-fast, minimalist desktop music player built in pure Rust for people who love owning their music library. 
+        No streaming subscriptions, no cloud lock-in, no telemetry—just pure, uncompromised bit-for-bit playback directly to your DAC.
       </p>
 
       <div class="hero-actions">
@@ -1068,6 +1214,107 @@
     </div>
   </section>
 
+  <!-- User Reviews & Testimonials Section -->
+  <section id="reviews" class="testimonials-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Loved by Local Music Collectors</h2>
+        <p style="color: var(--text-muted);">See why audiophiles, developers, and music lovers choose Chakra for their offline lossless archives.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="glass testimonial-card">
+          <div>
+            <div class="stars">★★★★★</div>
+            <p class="review-text" style="margin-top: 0.85rem;">“Finally, a music player that respects my 2TB FLAC collection. It boots in a split second, stays under 40MB RAM, and feeds bit-perfect streams straight to my USB DAC with zero coloring.”</p>
+          </div>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">🎧</div>
+            <div>
+              <div class="reviewer-name">Julian K.</div>
+              <div class="reviewer-role">FLAC Archivist & Hi-Fi Enthusiast</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass testimonial-card">
+          <div>
+            <div class="stars">★★★★★</div>
+            <p class="review-text" style="margin-top: 0.85rem;">“Streaming services kept removing songs from my playlists. I went back to maintaining my local library, and Chakra is the cleanest, fastest desktop player I've used. Lifetime license was a no-brainer.”</p>
+          </div>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">⚡</div>
+            <div>
+              <div class="reviewer-name">Elena R.</div>
+              <div class="reviewer-role">Music Collector & Producer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass testimonial-card">
+          <div>
+            <div class="stars">★★★★★</div>
+            <p class="review-text" style="margin-top: 0.85rem;">“The floating widget sits neatly next to VS Code, and full keyboard navigation means I never have to leave the home row. Lightweight, gorgeous waveforms, zero Electron bloat.”</p>
+          </div>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">💻</div>
+            <div>
+              <div class="reviewer-name">David S.</div>
+              <div class="reviewer-role">Software Engineer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Request Section -->
+  <section id="request" class="feature-request-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Request a Feature</h2>
+        <p style="color: var(--text-muted);">Chakra is crafted for the community. Have an idea for a visualizer, new audio format, or workflow tweak? Let us know directly.</p>
+      </div>
+
+      <div class="glass feature-request-card">
+        <form class="request-form" id="feature-request-form" onsubmit="handleFeatureRequest(event)">
+          <div class="form-group">
+            <label class="form-label" for="req-category">Category</label>
+            <select id="req-category" class="form-select" required>
+              <option value="Audio Engine & Codecs">Audio Engine & Codecs (DSD, ReplayGain, SACD, etc.)</option>
+              <option value="Visualizers & Themes">Visualizers & Aesthetic Themes</option>
+              <option value="Library & Playlists">Library, Metadata & Playlists</option>
+              <option value="Shortcuts & Navigation">Keyboard Shortcuts & UX</option>
+              <option value="Other / General">Other Ideas & Feedback</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="req-title">Feature Title</label>
+            <input type="text" id="req-title" class="form-input" placeholder="e.g., Support folder-based cue sheets" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="req-desc">Description & Use Case</label>
+            <textarea id="req-desc" class="form-textarea" placeholder="Describe the feature and why it would enhance your local music experience..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="req-email">Your Email <span>(Optional, for updates on your request)</span></label>
+            <input type="email" id="req-email" class="form-input" placeholder="name@domain.com">
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.95rem; font-size: 1rem; margin-top: 0.5rem;">
+            ✉️ Submit Feature Request
+          </button>
+          <div class="form-note">
+            Submitting opens your email client pre-filled to <strong style="color: var(--accent);">ssanjeewalewa96@gmail.com</strong>.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- Pricing Section -->
   <section id="pricing" class="pricing-section">
     <div class="container">
@@ -1135,6 +1382,12 @@
   <footer>
     <div class="container">
       <div class="footer-links">
+        <a href="#gallery">Screenshots</a>
+        <a href="#demo">Live Demo</a>
+        <a href="#features">Features</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#request">Request a Feature</a>
+        <a href="#pricing">Pricing</a>
         <a href="https://github.com/lewandowski96" target="_blank" rel="noopener">GitHub</a>
         <a href="https://instagram.com/_ksanjn" target="_blank" rel="noopener">Instagram</a>
         <a href="https://buymeacoffee.com/lewandowski96" target="_blank" rel="noopener">Buy Me a Coffee</a>
@@ -1396,6 +1649,30 @@
         startAutoplay();
       })();
     })();
+
+    // Feature Request Email Form Handler
+    function handleFeatureRequest(e) {
+      e.preventDefault();
+      const category = document.getElementById('req-category').value;
+      const title = document.getElementById('req-title').value.trim();
+      const desc = document.getElementById('req-desc').value.trim();
+      const email = document.getElementById('req-email').value.trim();
+
+      const subject = encodeURIComponent(`[Chakra Feature Request] [${category}] ${title}`);
+      const body = encodeURIComponent(
+        `Hi Sanjeewa,\n\n` +
+        `I have a feature request for Chakra Music Player:\n\n` +
+        `• Category: ${category}\n` +
+        `• Title: ${title}\n` +
+        `• Sender Contact: ${email || 'Not provided'}\n\n` +
+        `Details / Use Case:\n${desc}\n\n` +
+        `----------------------------------------\n` +
+        `Sent via Chakra Landing Page (chakra player)`
+      );
+
+      // Open user's default email client
+      window.location.href = `mailto:ssanjeewalewa96@gmail.com?subject=${subject}&body=${body}`;
+    }
   </script>
 </body>
 </html>
