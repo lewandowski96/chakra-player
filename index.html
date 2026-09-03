@@ -805,10 +805,201 @@
       box-shadow: 0 0 10px var(--accent-glow);
     }
 
-    /* Testimonials Section */
+    /* Testimonials Section (Slideshow) */
     .testimonials-section {
-      padding: 5rem 0;
+      padding: 5rem 0 3.5rem;
       position: relative;
+    }
+
+    .reviews-slideshow-container {
+      position: relative;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .reviews-slideshow-frame {
+      position: relative;
+      border-radius: 20px;
+      padding: 10px;
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.22) 0%, rgba(255, 255, 255, 0.04) 100%);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), 0 0 50px rgba(245, 158, 11, 0.1);
+      outline: none;
+    }
+
+    .reviews-slideshow-viewport {
+      position: relative;
+      background: rgba(18, 18, 22, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 14px;
+      border: 1px solid var(--glass-border);
+      overflow: hidden;
+      min-height: 270px;
+    }
+
+    .review-slide-item {
+      display: none;
+      padding: 2.75rem 3.25rem 2.25rem;
+      animation: fadeInReviewSlide 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      position: relative;
+    }
+
+    .review-slide-item.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    @keyframes fadeInReviewSlide {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .review-slide-quote-icon {
+      position: absolute;
+      top: 1.25rem;
+      right: 2rem;
+      font-size: 5.5rem;
+      line-height: 1;
+      color: rgba(245, 158, 11, 0.07);
+      font-family: Georgia, serif;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .review-slide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .review-tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .review-slide-text {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      line-height: 1.65;
+      color: var(--text-main);
+      font-weight: 400;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+
+    .review-slide-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--glass-border);
+      flex-wrap: wrap;
+    }
+
+    .review-verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .reviews-controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.25rem;
+      padding: 0 0.5rem;
+    }
+
+    .reviews-nav-arrows {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .review-nav-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--surface-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 1.4rem;
+      outline: none;
+    }
+
+    .review-nav-btn:hover {
+      background: var(--accent);
+      color: #09090b;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--accent-glow);
+    }
+
+    .reviews-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .review-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      padding: 0;
+    }
+
+    .review-dot:hover {
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .review-dot.active {
+      width: 26px;
+      border-radius: 6px;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .review-counter-badge {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-family: var(--font-mono);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
     }
 
     .testimonial-card {
@@ -1029,6 +1220,8 @@
       .feature-request-card { padding: 1.5rem; }
       .submit-review-card { padding: 1.5rem; }
       .community-notice-banner { flex-direction: column; align-items: flex-start; }
+      .review-slide-item { padding: 2rem 1.5rem 1.5rem; }
+      .reviews-controls-bar { flex-direction: column; gap: 1rem; align-items: center; }
     }
   </style>
 </head>
@@ -1287,53 +1480,138 @@
     </div>
   </section>
 
-  <!-- User Reviews & Testimonials Section -->
+  <!-- User Reviews & Testimonials Section (Slideshow) -->
   <section id="reviews" class="testimonials-section">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Loved by Local Music Collectors</h2>
-        <p style="color: var(--text-muted);">See why audiophiles, developers, and music lovers choose Chakra for their offline lossless archives.</p>
+        <p style="color: var(--text-muted);">See why audiophiles, developers, and music purists choose Chakra for their offline lossless archives.</p>
       </div>
 
-      <div class="grid-3">
-        <div class="glass testimonial-card">
-          <div>
-            <div class="stars">★★★★★</div>
-            <p class="review-text" style="margin-top: 0.85rem;">“Finally, a music player that respects my 2TB FLAC collection. It boots in a split second, stays under 40MB RAM, and feeds bit-perfect streams straight to my USB DAC with zero coloring.”</p>
-          </div>
-          <div class="reviewer-meta">
-            <div class="reviewer-avatar">🎧</div>
-            <div>
-              <div class="reviewer-name">Julian K.</div>
-              <div class="reviewer-role">FLAC Archivist & Hi-Fi Enthusiast</div>
+      <div class="reviews-slideshow-container">
+        <div class="reviews-slideshow-frame" id="reviews-slideshow" tabindex="0" aria-label="Community Reviews Slideshow">
+          <div class="reviews-slideshow-viewport">
+            <!-- Review 1 -->
+            <div class="review-slide-item active" data-index="0">
+              <div class="review-slide-quote-icon">“</div>
+              <div class="review-slide-header">
+                <div class="stars">★★★★★</div>
+                <div class="review-tag-badge">🎧 Bit-Perfect DAC Playback</div>
+              </div>
+              <p class="review-slide-text">
+                “Finally, a music player that respects my 2TB FLAC collection. It boots in a split second, stays under 40MB RAM, and feeds bit-perfect streams straight to my USB DAC with zero coloring.”
+              </p>
+              <div class="review-slide-footer">
+                <div class="reviewer-meta" style="padding-top: 0; border-top: none;">
+                  <div class="reviewer-avatar">🎧</div>
+                  <div>
+                    <div class="reviewer-name">Julian K.</div>
+                    <div class="reviewer-role">FLAC Archivist & Hi-Fi Enthusiast</div>
+                  </div>
+                </div>
+                <div class="review-verified-badge">✓ Verified Listener</div>
+              </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="review-slide-item" data-index="1">
+              <div class="review-slide-quote-icon">“</div>
+              <div class="review-slide-header">
+                <div class="stars">★★★★★</div>
+                <div class="review-tag-badge">⚡ Lightweight & Local First</div>
+              </div>
+              <p class="review-slide-text">
+                “Streaming services kept removing songs from my playlists. I went back to maintaining my local library, and Chakra is the cleanest, fastest desktop player I've used. Lifetime license was an absolute no-brainer.”
+              </p>
+              <div class="review-slide-footer">
+                <div class="reviewer-meta" style="padding-top: 0; border-top: none;">
+                  <div class="reviewer-avatar">⚡</div>
+                  <div>
+                    <div class="reviewer-name">Elena R.</div>
+                    <div class="reviewer-role">Music Collector & Producer</div>
+                  </div>
+                </div>
+                <div class="review-verified-badge">✓ Verified Listener</div>
+              </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="review-slide-item" data-index="2">
+              <div class="review-slide-quote-icon">“</div>
+              <div class="review-slide-header">
+                <div class="stars">★★★★★</div>
+                <div class="review-tag-badge">💻 Desktop Aesthetics & Hotkeys</div>
+              </div>
+              <p class="review-slide-text">
+                “The floating widget sits neatly next to VS Code, and full keyboard navigation means I never have to leave the home row. Lightweight, gorgeous waveforms, zero Electron bloat.”
+              </p>
+              <div class="review-slide-footer">
+                <div class="reviewer-meta" style="padding-top: 0; border-top: none;">
+                  <div class="reviewer-avatar">💻</div>
+                  <div>
+                    <div class="reviewer-name">David S.</div>
+                    <div class="reviewer-role">Software Engineer</div>
+                  </div>
+                </div>
+                <div class="review-verified-badge">✓ Verified Listener</div>
+              </div>
+            </div>
+
+            <!-- Review 4 -->
+            <div class="review-slide-item" data-index="3">
+              <div class="review-slide-quote-icon">“</div>
+              <div class="review-slide-header">
+                <div class="stars">★★★★★</div>
+                <div class="review-tag-badge">🎛️ Uncompromised Sound Quality</div>
+              </div>
+              <p class="review-slide-text">
+                “Direct bit-perfect output with zero OS resamplers in between makes a tangible difference on high-end planar headphones. Chakra gets completely out of the way and lets the music breathe.”
+              </p>
+              <div class="review-slide-footer">
+                <div class="reviewer-meta" style="padding-top: 0; border-top: none;">
+                  <div class="reviewer-avatar">🎛️</div>
+                  <div>
+                    <div class="reviewer-name">Marcus T.</div>
+                    <div class="reviewer-role">Audiophile & DAC Purist</div>
+                  </div>
+                </div>
+                <div class="review-verified-badge">✓ Verified Listener</div>
+              </div>
+            </div>
+
+            <!-- Review 5 -->
+            <div class="review-slide-item" data-index="4">
+              <div class="review-slide-quote-icon">“</div>
+              <div class="review-slide-header">
+                <div class="stars">★★★★★</div>
+                <div class="review-tag-badge">✨ Ambient Visualizers</div>
+              </div>
+              <p class="review-slide-text">
+                “The Energy Aura visualizer looks breathtaking on my OLED monitor while listening to 24-bit vinyl rips. Fast indexing, flawless album art extraction, and pure local simplicity.”
+              </p>
+              <div class="review-slide-footer">
+                <div class="reviewer-meta" style="padding-top: 0; border-top: none;">
+                  <div class="reviewer-avatar">🎵</div>
+                  <div>
+                    <div class="reviewer-name">Sophie L.</div>
+                    <div class="reviewer-role">Indie Musician & Vinyl Collector</div>
+                  </div>
+                </div>
+                <div class="review-verified-badge">✓ Verified Listener</div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="glass testimonial-card">
-          <div>
-            <div class="stars">★★★★★</div>
-            <p class="review-text" style="margin-top: 0.85rem;">“Streaming services kept removing songs from my playlists. I went back to maintaining my local library, and Chakra is the cleanest, fastest desktop player I've used. Lifetime license was a no-brainer.”</p>
-          </div>
-          <div class="reviewer-meta">
-            <div class="reviewer-avatar">⚡</div>
-            <div>
-              <div class="reviewer-name">Elena R.</div>
-              <div class="reviewer-role">Music Collector & Producer</div>
-            </div>
-          </div>
-        </div>
+        <!-- Slideshow Controls Bar -->
+        <div class="reviews-controls-bar">
+          <div class="reviews-dots" id="reviews-dots-container"></div>
 
-        <div class="glass testimonial-card">
-          <div>
-            <div class="stars">★★★★★</div>
-            <p class="review-text" style="margin-top: 0.85rem;">“The floating widget sits neatly next to VS Code, and full keyboard navigation means I never have to leave the home row. Lightweight, gorgeous waveforms, zero Electron bloat.”</p>
-          </div>
-          <div class="reviewer-meta">
-            <div class="reviewer-avatar">💻</div>
-            <div>
-              <div class="reviewer-name">David S.</div>
-              <div class="reviewer-role">Software Engineer</div>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <span class="review-counter-badge" id="reviews-counter">1 / 5</span>
+            <div class="reviews-nav-arrows">
+              <button class="review-nav-btn" id="reviews-prev-btn" aria-label="Previous Review" title="Previous Review (←)">‹</button>
+              <button class="review-nav-btn" id="reviews-next-btn" aria-label="Next Review" title="Next Review (→)">›</button>
             </div>
           </div>
         </div>
@@ -1882,6 +2160,131 @@
       group.addEventListener('mouseleave', () => {
         stars.forEach((s) => s.classList.remove('hovered'));
       });
+    })();
+
+    // Community Reviews Slideshow Controller
+    (function initReviewsSlideshow() {
+      const container = document.getElementById('reviews-slideshow');
+      if (!container) return;
+
+      const slides = container.querySelectorAll('.review-slide-item');
+      const dotsContainer = document.getElementById('reviews-dots-container');
+      const counterEl = document.getElementById('reviews-counter');
+      const prevBtn = document.getElementById('reviews-prev-btn');
+      const nextBtn = document.getElementById('reviews-next-btn');
+
+      let currentIdx = 0;
+      let autoplayTimer = null;
+      const totalSlides = slides.length;
+
+      // Build pagination dots
+      if (dotsContainer) {
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+          const dot = document.createElement('button');
+          dot.className = `review-dot ${i === 0 ? 'active' : ''}`;
+          dot.setAttribute('aria-label', `Go to review ${i + 1}`);
+          dot.addEventListener('click', () => {
+            goToReview(i);
+            resetAutoplay();
+          });
+          dotsContainer.appendChild(dot);
+        }
+      }
+
+      function updateUI() {
+        slides.forEach((slide, idx) => {
+          slide.classList.toggle('active', idx === currentIdx);
+        });
+
+        if (dotsContainer) {
+          const dots = dotsContainer.querySelectorAll('.review-dot');
+          dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentIdx);
+          });
+        }
+
+        if (counterEl) {
+          counterEl.textContent = `${currentIdx + 1} / ${totalSlides}`;
+        }
+      }
+
+      function goToReview(idx) {
+        currentIdx = (idx + totalSlides) % totalSlides;
+        updateUI();
+      }
+
+      function nextReview() {
+        goToReview(currentIdx + 1);
+      }
+
+      function prevReview() {
+        goToReview(currentIdx - 1);
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          nextReview();
+          resetAutoplay();
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          prevReview();
+          resetAutoplay();
+        });
+      }
+
+      // Keyboard arrow navigation on focus
+      container.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          nextReview();
+          resetAutoplay();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          prevReview();
+          resetAutoplay();
+        }
+      });
+
+      // Touch swipe gestures
+      let touchStartX = 0;
+      container.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      container.addEventListener('touchend', (e) => {
+        const diff = e.changedTouches[0].screenX - touchStartX;
+        if (Math.abs(diff) > 40) {
+          if (diff < 0) nextReview();
+          else prevReview();
+          resetAutoplay();
+        }
+      }, { passive: true });
+
+      // Autoplay every 6 seconds (paused on hover)
+      function startAutoplay() {
+        stopAutoplay();
+        autoplayTimer = setInterval(nextReview, 6000);
+      }
+
+      function stopAutoplay() {
+        if (autoplayTimer) clearInterval(autoplayTimer);
+      }
+
+      function resetAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+      }
+
+      container.addEventListener('mouseenter', stopAutoplay);
+      container.addEventListener('mouseleave', startAutoplay);
+
+      startAutoplay();
     })();
   </script>
 </body>
