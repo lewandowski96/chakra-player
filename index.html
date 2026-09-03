@@ -873,6 +873,78 @@
       color: var(--text-muted);
     }
 
+    /* Submit Review Section */
+    .submit-review-section {
+      padding: 0 0 5rem 0;
+      position: relative;
+    }
+
+    .submit-review-card {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2.5rem;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(245, 158, 11, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-review-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .community-notice-banner {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1.15rem;
+      border-radius: 10px;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      color: #fbbf24;
+      font-size: 0.84rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .star-rating-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.2rem;
+    }
+
+    .star-btn {
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      color: #52525b;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      line-height: 1;
+      padding: 0 2px;
+      outline: none;
+    }
+
+    .star-btn.active, .star-btn.hovered {
+      color: var(--accent);
+      text-shadow: 0 0 12px var(--accent-glow);
+      transform: scale(1.15);
+    }
+
+    .star-rating-text {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-left: 0.5rem;
+      font-weight: 500;
+    }
+
     /* Feature Request Section */
     .feature-request-section {
       padding: 5rem 0;
@@ -955,6 +1027,8 @@
       .slide-next { right: 0.75rem; }
       .slide-caption-card { padding: 1.25rem; }
       .feature-request-card { padding: 1.5rem; }
+      .submit-review-card { padding: 1.5rem; }
+      .community-notice-banner { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -971,6 +1045,7 @@
       <nav class="nav-links">
         <a href="#gallery">Gallery</a>
         <a href="#features">Features</a>
+        <a href="#reviews">Reviews</a>
         <a href="#request">Feature Request</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
@@ -1266,6 +1341,72 @@
     </div>
   </section>
 
+  <!-- Submit Review Section -->
+  <section id="submit-review" class="submit-review-section">
+    <div class="container">
+      <div class="glass submit-review-card">
+        <div style="text-align: center; margin-bottom: 1.75rem;">
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.8rem; border-radius: 20px; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); color: var(--accent); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem;">
+            <span>⭐</span> Community Showcase
+          </div>
+          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Send Us Your Review</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Enjoying Chakra for your lossless collection? Share your review below — we'll verify it and feature it on our website!
+          </p>
+        </div>
+
+        <div class="community-notice-banner">
+          <span style="font-size: 1.3rem; flex-shrink: 0;">🌐</span>
+          <div>
+            <strong>We feature our listeners!</strong> Leave your honest review and gear setup. We regularly update our testimonials section with verified feedback from the community.
+          </div>
+        </div>
+
+        <form class="request-form" id="submit-review-form" onsubmit="handleSubmitReview(event)">
+          <div class="form-group">
+            <label class="form-label">Rating</label>
+            <div class="star-rating-wrapper" id="star-rating-group" role="radiogroup" aria-label="Star Rating">
+              <button type="button" class="star-btn active" data-value="1" aria-label="1 star">★</button>
+              <button type="button" class="star-btn active" data-value="2" aria-label="2 stars">★</button>
+              <button type="button" class="star-btn active" data-value="3" aria-label="3 stars">★</button>
+              <button type="button" class="star-btn active" data-value="4" aria-label="4 stars">★</button>
+              <button type="button" class="star-btn active" data-value="5" aria-label="5 stars">★</button>
+              <span class="star-rating-text" id="star-rating-label">5.0 / 5.0 (Loved it!)</span>
+            </div>
+            <input type="hidden" id="review-rating" value="5">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="review-name">Your Name / Handle</label>
+            <input type="text" id="review-name" class="form-input" placeholder="e.g., Julian K. or @audiophile_guy" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="review-role">Your Role or Audio Setup <span>(Optional)</span></label>
+            <input type="text" id="review-role" class="form-input" placeholder="e.g., FLAC Archivist, Software Engineer, Schiit DAC + HD650">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="review-content">Your Review</label>
+            <textarea id="review-content" class="form-textarea" placeholder="Tell us how Chakra performs with your library, your favorite features, or how it fits your setup..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="review-email">Email or Profile URL <span>(Optional, to confirm your review before publishing)</span></label>
+            <input type="text" id="review-email" class="form-input" placeholder="name@domain.com or github.com/username">
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.95rem; font-size: 1rem; margin-top: 0.5rem;">
+            🌟 Submit Review for Website
+          </button>
+          <div class="form-note">
+            Submitting opens your email client pre-filled to <strong style="color: var(--accent);">ssanjeewalewa96@gmail.com</strong> so we can publish your review.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- Feature Request Section -->
   <section id="request" class="feature-request-section">
     <div class="container">
@@ -1384,6 +1525,7 @@
         <a href="#demo">Live Demo</a>
         <a href="#features">Features</a>
         <a href="#reviews">Reviews</a>
+        <a href="#submit-review">Submit Review</a>
         <a href="#request">Request a Feature</a>
         <a href="#pricing">Pricing</a>
         <a href="https://github.com/lewandowski96" target="_blank" rel="noopener">GitHub</a>
@@ -1671,6 +1813,79 @@
       // Open user's default email client
       window.location.href = `mailto:ssanjeewalewa96@gmail.com?subject=${subject}&body=${body}`;
     }
+
+    // Submit Review Form Handler
+    function handleSubmitReview(e) {
+      e.preventDefault();
+      const rating = document.getElementById('review-rating').value || '5';
+      const name = document.getElementById('review-name').value.trim();
+      const role = document.getElementById('review-role').value.trim();
+      const content = document.getElementById('review-content').value.trim();
+      const contact = document.getElementById('review-email').value.trim();
+
+      const starsString = '★'.repeat(parseInt(rating, 10)) + '☆'.repeat(5 - parseInt(rating, 10));
+      const subject = encodeURIComponent(`[Chakra Website Review] ${rating} Stars from ${name}`);
+      const body = encodeURIComponent(
+        `Hi Sanjeewa,\n\n` +
+        `Here is my review for the Chakra Music Player website showcase:\n\n` +
+        `• Name / Handle: ${name}\n` +
+        `• Rating: ${starsString} (${rating}/5)\n` +
+        `• Role / Setup: ${role || 'Not specified'}\n` +
+        `• Contact / Profile: ${contact || 'Not provided'}\n\n` +
+        `Review Content:\n"${content}"\n\n` +
+        `----------------------------------------\n` +
+        `Permission granted to feature this review on the Chakra website.\n` +
+        `Sent via Chakra Landing Page`
+      );
+
+      // Open user's default email client
+      window.location.href = `mailto:ssanjeewalewa96@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    // Star rating picker interactivity
+    (function initStarRating() {
+      const group = document.getElementById('star-rating-group');
+      if (!group) return;
+      const stars = group.querySelectorAll('.star-btn');
+      const ratingInput = document.getElementById('review-rating');
+      const label = document.getElementById('star-rating-label');
+
+      const descriptions = {
+        '1': '1.0 / 5.0 (Needs work)',
+        '2': '2.0 / 5.0 (Fair)',
+        '3': '3.0 / 5.0 (Good)',
+        '4': '4.0 / 5.0 (Very Good)',
+        '5': '5.0 / 5.0 (Loved it!)'
+      };
+
+      function updateStars(val) {
+        stars.forEach((s) => {
+          const sVal = parseInt(s.getAttribute('data-value'), 10);
+          s.classList.toggle('active', sVal <= val);
+        });
+        if (ratingInput) ratingInput.value = val;
+        if (label) label.textContent = descriptions[val] || `${val}.0 / 5.0`;
+      }
+
+      stars.forEach((star) => {
+        star.addEventListener('click', () => {
+          const val = parseInt(star.getAttribute('data-value'), 10);
+          updateStars(val);
+        });
+
+        star.addEventListener('mouseenter', () => {
+          const val = parseInt(star.getAttribute('data-value'), 10);
+          stars.forEach((s) => {
+            const sVal = parseInt(s.getAttribute('data-value'), 10);
+            s.classList.toggle('hovered', sVal <= val);
+          });
+        });
+      });
+
+      group.addEventListener('mouseleave', () => {
+        stars.forEach((s) => s.classList.remove('hovered'));
+      });
+    })();
   </script>
 </body>
 </html>
